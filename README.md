@@ -1,3 +1,3 @@
 <center>
-  <img src="assets/banner.jpeg">
+  <img src="assets/continuity_logo.svg">
 </center>
