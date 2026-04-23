@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cutiled"
+version = "0.0.1"
+description = "cuTile diffusion kernels"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = ["numpy"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-xdist"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["tiled"]
+
+[tool.uv]
+native-tls = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts   = "-v --tb=short"
+markers   = [
+    "cuda: requires GPU",
+    "slow: long benchmarks",
+]
+
