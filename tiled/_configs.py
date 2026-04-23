@@ -1,3 +1,5 @@
+import cuda.tile as ct
+
 _D64 = {
     "sm_120": [(64, 64), (64, 128)],
     "sm_90":  [(64, 64), (64, 128)],
@@ -11,3 +13,7 @@ _D128 = {
 
 def get_attn_tile_configs(D: int, sm: str = "sm_120") -> list[tuple[int, int]]:
     return (_D128 if D >= 128 else _D64).get(sm, [(64, 64)])
+
+OCC_FWD = ct.ByTarget(sm_120=16, sm_90=8, sm_89=4, default=4)
+OCC_BWD = ct.ByTarget(sm_120=2, sm_90=4, sm_89=2, default=2)
+

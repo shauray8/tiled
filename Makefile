@@ -8,6 +8,12 @@ install:
 	uv venv $(VENV) --python 3.12 --system-site-packages
 	uv pip install -e ".[dev]" --python $(PYTHON)
 
+fmt:
+	$(VENV)/bin/ruff format .
+
+lint:
+	$(VENV)/bin/ruff check .
+
 test:
 	$(PYTEST) tests/ -v
 
@@ -19,3 +25,4 @@ bench:
 
 clean:
 	rm -rf $(VENV) dist build *.egg-info .pytest_cache __pycache__
+
